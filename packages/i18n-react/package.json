@@ -5,6 +5,11 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "homepage": "https://github.com/hendrikkao1/locali18n",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hendrikkao1/locali18n.git"
+  },
   "scripts": {
     "check-types": "tsc --noEmit",
     "lint": "eslint . --max-warnings 0",
