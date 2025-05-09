@@ -46,7 +46,7 @@ export const Locali18nProvider = ({
   );
 }
 
-type TooMuchFun = (taxt: string) => string;
+type TooMuchFun = (text: string) => string;
 
 export const useTranslation = (): TooMuchFun => {
   const translator = useContext(Locali18nContext);
