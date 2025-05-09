@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useCallback, useContext, use } from "react";
-import { I18n } from "@locali18n/i18n";
+import { I18n } from "@repo/i18n";
 
 const promiseCache = new Map<string, Promise<unknown>>();
 

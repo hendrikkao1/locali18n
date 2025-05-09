@@ -17,8 +17,8 @@
     "build": "tsup ./src/index.tsx --format cjs,esm --dts"
   },
   "devDependencies": {
-    "@locali18n/i18n": "*",
     "@repo/eslint-config": "*",
+    "@repo/i18n": "*",
     "@repo/typescript-config": "*",
     "@turbo/gen": "^2.4.4",
     "@types/node": "^22.13.9",
