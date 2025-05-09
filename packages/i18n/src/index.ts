@@ -54,16 +54,24 @@ class WindowAiTranslatorProvider implements TranslationProvider {
 
 export class I18n {
   private cache: Map<string, string> = new Map();
-  
-  private options: I18nOptions;
-  
-  private provider: TranslationProvider;
-  
-  private session: TranslationSession | undefined;
 
+  private options: I18nOptions;
+
+  private provider: TranslationProvider;
+
+  private session: TranslationSession | undefined;
+  
   private constructor(options: I18nOptions, provider: TranslationProvider) {
     this.options = options;
     this.provider = provider;
+  }
+  
+  get sourceLanguage() {
+    return this.options.sourceLanguage;
+  }
+
+  get targetLanguage() {
+    return this.options.targetLanguage;
   }
 
   static async create(
@@ -71,9 +79,9 @@ export class I18n {
     provider: TranslationProvider = new WindowAiTranslatorProvider()
   ): Promise<I18n> {
     const instance = new I18n(options, provider);
-    
+
     await instance.initialize();
-    
+
     return instance;
   }
 
@@ -81,8 +89,8 @@ export class I18n {
     try {
       this.session = await this.provider.createSession(this.options);
     } catch (error) {
-      const message = `Failed to initialize the translation session for ${this.options.sourceLanguage} -> ${this.options.targetLanguage}.`;
-      
+      const message = `Failed to initialize the translation session for ${this.sourceLanguage} -> ${this.targetLanguage}.`;
+
       throw new Error(message);
     }
   }
@@ -94,7 +102,7 @@ export class I18n {
       );
     }
 
-    const cacheKey = `${this.options.sourceLanguage}:${this.options.targetLanguage}:${input}`;
+    const cacheKey = `${this.sourceLanguage}:${this.targetLanguage}:${input}`;
 
     // Check cache first
     if (this.cache.has(cacheKey)) {
@@ -110,8 +118,8 @@ export class I18n {
 
       return translated;
     } catch (error) {
-      const message = `Failed to translate text starting with "${input.substring(0, 30)}..." from ${this.options.sourceLanguage} to ${this.options.targetLanguage}.`;
-      
+      const message = `Failed to translate text starting with "${input.substring(0, 30)}..." from ${this.sourceLanguage} to ${this.targetLanguage}.`;
+
       throw new Error(message);
     }
   }

@@ -17,10 +17,10 @@ const i18nPromise = (config: { sourceLanguage: string; targetLanguage: string })
   return createCachedPromise(key, () => I18n.create(config));
 };
 
-const createTranslationPromise = (translator: I18n, input: string) => {
-  const key = `${"sourceLanguage"}:${"targetLanguage"}:${input}`;
+const createTranslationPromise = (i18n: I18n, input: string) => {
+  const key = `${i18n.sourceLanguage}:${i18n.targetLanguage}:${input}`;
 
-  return createCachedPromise(key, () => translator.translate(input));
+  return createCachedPromise(key, () => i18n.translate(input));
 };
 
 const Locali18nContext = createContext<I18n | undefined>(undefined);
@@ -46,21 +46,22 @@ export const Locali18nProvider = ({
   );
 }
 
-type TooMuchFun = (text: string) => string;
+type TooMuchFun = (text: string | number) => string;
 
 export const useTranslation = (): TooMuchFun => {
-  const translator = useContext(Locali18nContext);
+  const i18n = useContext(Locali18nContext);
 
-  if (!translator) {
+  if (!i18n) {
     throw new Error("useTranslation must be used within a Locali18nProvider");
   }
 
   const t = useCallback((...params: Parameters<TooMuchFun>) => {
     const [text] = params;
-    const translationPromise = createTranslationPromise(translator, text);
+    const translationPromise = createTranslationPromise(i18n, text.toString());
+    const translation = use(translationPromise)
 
-    return use(translationPromise);
-  }, [translator]);
+    return translation;
+  }, [i18n]);
 
   return t;
 }
