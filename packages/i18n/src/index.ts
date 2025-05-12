@@ -6,10 +6,8 @@
 
 declare global {
   interface Window {
-    ai?: {
-      translator?: {
-        create(options: I18nOptions): Promise<TranslationSession>;
-      };
+    Translator?: {
+      create(options: I18nOptions): Promise<TranslationSession>;
     };
   }
 }
@@ -30,21 +28,21 @@ interface TranslationProvider {
 
 class WindowAiTranslatorProvider implements TranslationProvider {
   async createSession(options: I18nOptions): Promise<TranslationSession> {
-    if (!window?.ai?.translator?.create) {
+    if (!window?.Translator?.create) {
       throw new Error(
-        "The 'window.ai.translator.create' function is not available. Ensure the browser supports this feature and it's enabled."
+        "The 'window.Translator.create' function is not available. Ensure the browser supports this feature and it's enabled."
       );
     }
 
     try {
-      const session = await window.ai.translator.create({
+      const session = await window.Translator.create({
         sourceLanguage: options.sourceLanguage,
         targetLanguage: options.targetLanguage,
       });
 
       return session;
     } catch (error) {
-      const message = `Failed to create translation session via window.ai for ${options.sourceLanguage} -> ${options.targetLanguage}.`;
+      const message = `Failed to create translation session via window.Translator for ${options.sourceLanguage} -> ${options.targetLanguage}.`;
 
       throw new Error(message);
     }
