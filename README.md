@@ -1,29 +1,29 @@
 # locali18n
 
-A lightweight i18n library for React that harnesses the browser's Web Machine Learning Translation API for instant, dynamic translations.
+A lightweight i18n library for React that uses your browser's Web Machine Learning Translation API for instant translations.
 
-> **Note:** This project is in early development (v0.0.1) and relies on the experimental Web ML Translation API, which has limited browser support and requires a flag to be enabled.
+> **Note:** This project is in early development and uses the experimental Web ML Translation API, which has limited browser support and needs a flag enabled.
 
 ## Overview
 
-locali18n takes a new approach to web app internationalization by leveraging your browser's native translation capabilities. Unlike traditional methods locali18n delivers translations during runtime.
+locali18n brings a fresh approach to web app translations by using your browser's built-in translation capabilities. Instead of pre-loading translation files, locali18n translates your content in real-time.
 
-Traditional i18n approaches face significant challenges: translation files, templates, dynamic keys, localization processes.
+Traditional i18n solutions come with headaches: managing translation files, creating templates, handling dynamic keys, and complex localization processes. locali18n solves these problems with:
 
-- **Truly Real-time**: Content translates instantly without deployment cycles or human translators
-- **API-friendly**: Dynamic content translates automatically without needing translation keys
-- **Zero Maintenance**: Eliminate the need to manage language files and translation mappings
-- **User-Centered**: Adapts to individual language preferences and personal language models
+- **Real-time Translation**: Content translates without dev cycles or human translators
+- **API-friendly**: Dynamic content translates automatically without needing mapped translation keys
+- **Zero Maintenance**: No more managing language files and mappings
+- **User-Centered**: Adapts to each user's language preferences and personal language models
 
-# Install
+## Install
 
 ```shell
 npm install @locali18n/i18n-react --save
 ```
 
-# Usage
+## Usage
 
-Wrap your application with the provider
+Wrap your application with the provider:
 
 ```tsx
 import { Locali18nProvider } from "@locali18n/i18n-react";
@@ -37,7 +37,7 @@ function Root() {
 }
 ```
 
-Using `Translation` component
+Use the `Translation` component:
 
 ```tsx
 import { Translation } from "@locali18n/i18n-react";
@@ -53,10 +53,10 @@ function App() {
 }
 ```
 
-Or the hook eqvalent
+Or use the hook instead:
 
 ```tsx
-import { Translation } from "@locali18n/i18n-react";
+import { useTranslation } from "@locali18n/i18n-react";
 
 function App() {
   const t = useTranslation();
@@ -70,9 +70,15 @@ function App() {
 }
 ```
 
-## Enable feature flag
+## Enable in Chrome
 
-TODO: Describe how to enable feature flag
+To use these APIs on localhost:
+
+1. Go to `chrome://flags/#prompt-api-for-gemini-nano`
+2. Select Enabled
+3. Restart Chrome
+
+To check if Gemini Nano is working, open DevTools and type: `await LanguageModel.availability();`. This should return `available`.
 
 ## Useful Links
 
