@@ -30,7 +30,7 @@ import { Locali18nProvider } from "@locali18n/i18n-react";
 
 function Root() {
   return (
-    <Locali18nProvider sourceLanguage="en" targetLanguage="jp">
+    <Locali18nProvider sourceLanguage="en" targetLanguage="ja">
       <App />
     </Locali18nProvider>
   );
