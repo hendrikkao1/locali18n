@@ -2,7 +2,7 @@
 
 A lightweight i18n library for React that uses your browser's Web Machine Learning Translation API for instant translations.
 
-> **Note:** This project is in early development and uses the experimental Web ML Translation API, which has limited browser support and needs a flag enabled.
+> **Note:** This project is in early development and uses the experimental Web ML Translation API, which has limited browser support. The API is available in latests Chrome Canary or by enablaing the `#prompt-api-for-gemini-nano` flag in Chrome.
 
 ## Overview
 
