@@ -1,5 +1,11 @@
 # @locali18n/i18n-react
 
+## 0.0.4
+
+### Patch Changes
+
+- Added docs
+
 ## 0.0.3
 
 ### Patch Changes
